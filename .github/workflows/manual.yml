@@ -7,6 +7,9 @@ name: WorkFlow Test
 on:
   workflow_dispatch:
 
+#setting environment variables
+env:
+  env_var: "test_env_var"
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
@@ -19,5 +22,8 @@ jobs:
         - run: echo "The job belongs to ${{ github.workflow}}" is manually triggered by a "${{ github.actor }} using  ${{ github.event_name }} event."
         - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
         - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
-
+        - run: echo "Environment variable is ${{ env.env_var }}"
+        - run: echo "few default environment variables. os - $env:RUNNER_OS ,server url -  $env:GITHUB_SERVER_URL, run id - $env:GITHUB_RUN_ID"
+        - run: echo "few more default environment variables. event name - $env:GITHUB_EVENT_NAME , owner - $env:GITHUB_REPOSITORY_OWNER"
+        
+    
