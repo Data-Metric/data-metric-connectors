@@ -23,7 +23,7 @@ jobs:
         - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
         - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
         - run: echo "Environment variable is ${{ env.env_var }}"
-        - run: echo "few default environment variables. os - $env:RUNNER_OS ,server url -  $env:GITHUB_SERVER_URL, run id - $env:GITHUB_RUN_ID"
-        - run: echo "few more default environment variables. event name - $env:GITHUB_EVENT_NAME , owner - $env:GITHUB_REPOSITORY_OWNER"
+        - run: echo "few default environment variables. os - $RUNNER_OS ,server url -  $GITHUB_SERVER_URL, run id - $GITHUB_RUN_ID"
+        - run: echo "few more default environment variables. event name - $GITHUB_EVENT_NAME , owner - $GITHUB_REPOSITORY_OWNER"
         
     
