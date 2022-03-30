@@ -19,11 +19,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-        - run: echo "The job belongs to ${{ github.workflow}}" is manually triggered by a "${{ github.actor }} using  ${{ github.event_name }} event."
-        - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-        - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-        - run: echo "Environment variable is ${{ env.env_var }}"
-        - run: echo "few default environment variables. os - $RUNNER_OS ,server url -  $GITHUB_SERVER_URL, run id - $GITHUB_RUN_ID"
-        - run: echo "few more default environment variables. event name - $GITHUB_EVENT_NAME , owner - $GITHUB_REPOSITORY_OWNER"
+      - name: step1
+        run: echo "The job belongs to ${{ github.workflow}}" is manually triggered by a "${{ github.actor }} using  ${{ github.event_name }} event."
+      - name: step2
+        run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - name: step3
+        run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: step4  
+        run: echo "Environment variable is ${{ env.env_var }}"
+      - name: step5
+        run: echo "few default environment variables. os - $RUNNER_OS ,server url -  $GITHUB_SERVER_URL, run id - $GITHUB_RUN_ID"
+      - name: step6
+        run: echo "few more default environment variables. event name - $GITHUB_EVENT_NAME , owner - $GITHUB_REPOSITORY_OWNER"
         
     
