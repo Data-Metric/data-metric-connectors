@@ -15,6 +15,16 @@ class Mongo:
     def get_meta(
         self, username: str, password: str, host: str, port: int, db: str
     ) -> List[Dict[str, Dict[str, str]]]:
+        """
+        Gets the metadata of the mongo db database.
+
+        :param username: username of db
+        :param password: password of the username
+        :param host: host name of mongo db
+        :param port: port number of mongo db
+        :param db: mogo db database name
+        :return: metadata of the database
+        """
         try:
             meta = []
             client = ConnectMongo(self.logger).connect_database(

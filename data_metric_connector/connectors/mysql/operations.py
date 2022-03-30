@@ -15,6 +15,15 @@ class MySql:
     def get_meta(
         self, username: str, password: str, host: str, port: int, db: str
     ) -> List[Dict[str, Dict[str, str]]]:
+        """
+        Gets the metadata of the Mysql db database.
+
+        :param password: password of the username
+        :param host: host name of Mysql db
+        :param port: port number of Mysql db
+        :param db: Mysql db database name
+        :return: metadata of the database
+        """
         cxn = ConnectMySql(self.logger).connect_database(
             username, password, host, port, db
         )
