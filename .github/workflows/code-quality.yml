@@ -64,11 +64,15 @@ jobs:
       - name: test
         run: |
           poetry run coverage run -m pytest tests
-          poetry run coverage xml
+          poetry run coverage xml -o coverage1.xml
+          poetry run pytest --cov=./ --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
           fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
+          
