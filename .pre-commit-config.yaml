@@ -1,3 +1,14 @@
+#flake8 is a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code.
+#isort is a Python utility / library to sort imports alphabetically, and automatically separated into sections and by type.
+#Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting
+#Bandit is a tool designed to find common security issues in Python code.
+#blacken-docs Run `black` on python code blocks in documentation files
+#pygrep-hooks A collection of fast, cheap, regex based pre-commit hooks.
+#pre-commit-hooks has Some out-of-the-box hooks for pre-commit
+#Mypy is a static type checker for Python.
+#autoflake removes unused imports and unused variables from Python code. It makes use of pyflakes to do this.
+#mirrors-prettier of the `prettier` npm package for pre-commit
+#bashate is Code style enforcement for bash programs. Mirror of code maintained at opendev.org.
 repos:
   - repo: local
     hooks:
@@ -8,6 +19,26 @@ repos:
         args: ["--config=setup.cfg"]
         language: python
         types: [python]
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        description: Style guide enforcement
+        entry: flake8
+        args: ["--config=setup.cfg"]
+        language: python
+        types: [python]
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        description: Style guide enforcement
+        entry: black
+        args:
+          - --safe
+          - --quiet
+        language: python
+        types: [python]
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.4
     hooks:
@@ -16,13 +47,6 @@ repos:
           - --ini
           - setup.cfg
         exclude: tests/
-  - repo: https://github.com/psf/black
-    rev: 22.3.0
-    hooks:
-      - id: black
-        args:
-          - --safe
-          - --quiet
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.12.1
     hooks:
@@ -41,10 +65,8 @@ repos:
     rev: v4.1.0
     hooks:
       - id: debug-statements
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
   - repo: local
     hooks:
       - id: mypy
@@ -70,17 +92,6 @@ repos:
       - id: prettier
         stages:
           - commit
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v2.23.0
-    hooks:
-      - id: commitizen
-        stages:
-          - commit-msg
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
-    hooks:
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
   - repo: https://github.com/openstack/bashate
     rev: 2.1.0
     hooks:

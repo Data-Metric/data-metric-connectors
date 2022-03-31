@@ -60,3 +60,13 @@ jobs:
         run: |
           poetry run mypy data_metric_connector
           poetry run flake8 .
+
+      - name: test
+        run: |
+          poetry run coverage run -m pytest tests
+          coverage xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          file: ./coverage.xml
