@@ -32,12 +32,10 @@ jobs:
     needs: test1
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:     
-      - name: step4  
+    steps:
+      - name: step4
         run: echo "Environment variable is ${{ env.env_var }}"
       - name: step5
         run: echo "few default environment variables. os - $RUNNER_OS ,server url -  $GITHUB_SERVER_URL, run id - $GITHUB_RUN_ID"
       - name: step6
         run: echo "few more default environment variables. event name - $GITHUB_EVENT_NAME , owner - $GITHUB_REPOSITORY_OWNER"
-        
-    

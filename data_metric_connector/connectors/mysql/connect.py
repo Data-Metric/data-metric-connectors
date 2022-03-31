@@ -27,7 +27,13 @@ class ConnectMySql(object):
         :return: True if Authentication is successful , else False
         """
         try:
-            cnx = connector.connect(user=username, password=password, host=host, port=port, database=db)
+            cnx = connector.connect(
+                user=username,
+                password=password,
+                host=host,
+                port=port,
+                database=db,
+            )
             self.logger.info("Authentication Successful! for MySql db")
             cnx.close()
             return True
@@ -47,7 +53,13 @@ class ConnectMySql(object):
         :return: Mysql connection
         """
         try:
-            cnx = connector.connect(user=username, password=password, host=host, port=port, database=db)
+            cnx = connector.connect(
+                user=username,
+                password=password,
+                host=host,
+                port=port,
+                database=db,
+            )
             self.logger.info("MySql Database connected!")
             return cnx
         except Exception as e:

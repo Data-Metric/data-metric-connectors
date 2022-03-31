@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Dict, List
-
 import loguru
 
 from data_metric_connector.connectors.mysql.connect import ConnectMySql
@@ -19,7 +17,7 @@ class MySql(object):
         """
         self.logger = logger
 
-    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> List[Dict[str, Dict[str, str]]]:
+    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> list[dict[str, dict[str, str]]]:
         """
         Gets the metadata of the Mysql db database.
 
@@ -35,7 +33,6 @@ class MySql(object):
         try:
             with open(
                 "connectors/mysql/meta_sql/meta.sql",
-                "r",
             ) as f:
                 query_count = 0
                 for cursors in cursor.execute(f.read(), (db, db), multi=True):

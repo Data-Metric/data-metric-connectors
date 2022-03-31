@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Dict, List
-
 import loguru
 
 from data_metric_connector.connectors.mongo.connect import ConnectMongo
@@ -19,7 +17,7 @@ class Mongo(object):
         """
         self.logger = logger
 
-    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> List[Dict[str, Dict[str, str]]]:
+    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> list[dict[str, dict[str, str]]]:
         """
         Gets the metadata of the mongo db database.
 
