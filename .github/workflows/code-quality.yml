@@ -47,9 +47,14 @@ jobs:
         run: |
           poetry config virtualenvs.in-project true
           poetry install
-      
+
+      # checks package dependencies and check for vulnerabilities in packages
+      - name: package
+        run: |
+          poetry check
+          poetry run pip check
+          poetry run safety check --full-report
+
       # checks static typing for Python
       - name: lint
         run: poetry run mypy data_metric_connector
-        
-      
