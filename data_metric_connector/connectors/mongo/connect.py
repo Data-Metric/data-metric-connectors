@@ -5,8 +5,15 @@ import pymongo
 from mongoengine import connect
 
 
-class ConnectMongo:
+class ConnectMongo(object):
+    """This class is used for Mongo db connection."""
+
     def __init__(self, logger: loguru.Logger):
+        """
+        __init__  function.
+
+        :param logger: provides logging capability
+        """
         self.logger = logger
 
     def test_connection(
@@ -29,8 +36,7 @@ class ConnectMongo:
             if client[db].list_collection_names() is not None:
                 self.logger.info("Authentication Successful! for mongo db")
                 return True
-            else:
-                raise Exception("Unable to Authenticate! mongo db")
+            raise Exception("Unable to Authenticate! mongo db")
         except Exception as e:
             self.logger.error(f"Authentication Failed! for mongo db - {e}")
             return False

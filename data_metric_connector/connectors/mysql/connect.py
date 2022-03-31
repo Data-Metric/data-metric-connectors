@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 import loguru
-import mysql.connector
+from mysql import connector
 
 
-class ConnectMySql:
+class ConnectMySql(object):
+    """This class is used for MySql connection."""
+
     def __init__(self, logger: loguru.Logger):
+        """
+        __init__  function.
+
+        :param logger: provides logging capability
+        """
         self.logger = logger
 
     def test_connection(
@@ -22,7 +29,7 @@ class ConnectMySql:
         :return: True if Authentication is successful , else False
         """
         try:
-            cnx = mysql.connector.connect(
+            cnx = connector.connect(
                 user=username, password=password, host=host, port=port, database=db
             )
             self.logger.info("Authentication Successful! for MySql db")
@@ -34,7 +41,7 @@ class ConnectMySql:
 
     def connect_database(
         self, username: str, password: str, host: str, port: int, db: str
-    ) -> mysql.connector.connect:
+    ) -> connector.connect:
         """
         Connects to Mysql db and returns Mysql connection.
 
@@ -46,7 +53,7 @@ class ConnectMySql:
         :return: Mysql connection
         """
         try:
-            cnx = mysql.connector.connect(
+            cnx = connector.connect(
                 user=username, password=password, host=host, port=port, database=db
             )
             self.logger.info("MySql Database connected!")
@@ -54,7 +61,7 @@ class ConnectMySql:
         except Exception as e:
             raise Exception(f"MySql Database connection error! - {e}")
 
-    def disconnect_database(self, cnx: mysql.connector.connect) -> None:
+    def disconnect_database(self, cnx: connector.connect) -> None:
         """
         Disconnects the Mysql db connection.
 

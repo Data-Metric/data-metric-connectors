@@ -8,8 +8,15 @@ from data_metric_connector.connectors.mysql.connect import ConnectMySql
 from data_metric_connector.utils.file_size import convert_size
 
 
-class MySql:
-    def __init__(self, logger: loguru.Logger):
+class MySql(object):
+    """This class is used for executing MySql operations."""
+
+    def __init__(self, logger: loguru.Logger) -> None:
+        """
+        __init__  function.
+
+        :param logger: provides logging capability
+        """
         self.logger = logger
 
     def get_meta(
@@ -18,6 +25,7 @@ class MySql:
         """
         Gets the metadata of the Mysql db database.
 
+        :param username: username of db
         :param password: password of the username
         :param host: host name of Mysql db
         :param port: port number of Mysql db
@@ -36,16 +44,16 @@ class MySql:
                 query_count = 0
                 for cursors in cursor.execute(f.read(), (db, db), multi=True):
                     query_count += 1
-                    result = cursors.fetchall()
+                    query_result = cursors.fetchall()
                     if query_count == 1:
                         tables_size = {
                             table_name: [convert_size(int(size))]
-                            for table_name, size in result
+                            for table_name, size in query_result
                         }
                     elif query_count == 2:
                         tables_count = {
                             table_name: [column_count, int(row_count)]
-                            for table_name, column_count, row_count in result
+                            for table_name, column_count, row_count in query_result
                         }
                 meta = [
                     {

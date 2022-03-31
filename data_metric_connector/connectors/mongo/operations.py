@@ -8,8 +8,15 @@ from data_metric_connector.connectors.mongo.connect import ConnectMongo
 from data_metric_connector.utils.file_size import convert_size
 
 
-class Mongo:
+class Mongo(object):
+    """This class is used for executing Mongo db operations."""
+
     def __init__(self, logger: loguru.Logger):
+        """
+        __init__  function.
+
+        :param logger: provides logging capability
+        """
         self.logger = logger
 
     def get_meta(
@@ -31,14 +38,22 @@ class Mongo:
                 username, password, host, port, db
             )
             for dbs in client.list_databases():
-                data = client.get_database(dbs["name"]).command("dbstats")
-                data.update({"avgObjSize": convert_size(data["avgObjSize"])})
-                data.update({"dataSize": convert_size(data["dataSize"])})
-                data.update({"storageSize": convert_size(data["storageSize"])})
-                data.update({"indexSize": convert_size(data["indexSize"])})
-                data.update({"totalSize": convert_size(data["totalSize"])})
-                data.update({"fsUsedSize": convert_size(data["fsUsedSize"])})
-                data.update({"fsTotalSize": convert_size(data["fsTotalSize"])})
+                mongo_data = client.get_database(dbs["name"]).command("dbstats")
+                mongo_data.update(
+                    {"avgObjSize": convert_size(mongo_data["avgObjSize"])}
+                )
+                mongo_data.update({"dataSize": convert_size(mongo_data["dataSize"])})
+                mongo_data.update(
+                    {"storageSize": convert_size(mongo_data["storageSize"])}
+                )
+                mongo_data.update({"indexSize": convert_size(mongo_data["indexSize"])})
+                mongo_data.update({"totalSize": convert_size(mongo_data["totalSize"])})
+                mongo_data.update(
+                    {"fsUsedSize": convert_size(mongo_data["fsUsedSize"])}
+                )
+                mongo_data.update(
+                    {"fsTotalSize": convert_size(mongo_data["fsTotalSize"])}
+                )
                 coll_info = {}
                 for collections in client.get_database(
                     dbs["name"]
@@ -50,8 +65,8 @@ class Mongo:
                         "count": collection["count"],
                         "storageSize": convert_size(collection["storageSize"]),
                     }
-                data["collections"] = coll_info
-                meta.append(data)
+                mongo_data["collections"] = coll_info
+                meta.append(mongo_data)
             self.logger.info(f"MetaData is {meta}")
             ConnectMongo(self.logger).disconnect_database(client)
             return meta
