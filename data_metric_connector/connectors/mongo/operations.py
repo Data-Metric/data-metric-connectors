@@ -19,9 +19,7 @@ class Mongo(object):
         """
         self.logger = logger
 
-    def get_meta(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> List[Dict[str, Dict[str, str]]]:
+    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> List[Dict[str, Dict[str, str]]]:
         """
         Gets the metadata of the mongo db database.
 
@@ -34,33 +32,19 @@ class Mongo(object):
         """
         try:
             meta = []
-            client = ConnectMongo(self.logger).connect_database(
-                username, password, host, port, db
-            )
+            client = ConnectMongo(self.logger).connect_database(username, password, host, port, db)
             for dbs in client.list_databases():
                 mongo_data = client.get_database(dbs["name"]).command("dbstats")
-                mongo_data.update(
-                    {"avgObjSize": convert_size(mongo_data["avgObjSize"])}
-                )
+                mongo_data.update({"avgObjSize": convert_size(mongo_data["avgObjSize"])})
                 mongo_data.update({"dataSize": convert_size(mongo_data["dataSize"])})
-                mongo_data.update(
-                    {"storageSize": convert_size(mongo_data["storageSize"])}
-                )
+                mongo_data.update({"storageSize": convert_size(mongo_data["storageSize"])})
                 mongo_data.update({"indexSize": convert_size(mongo_data["indexSize"])})
                 mongo_data.update({"totalSize": convert_size(mongo_data["totalSize"])})
-                mongo_data.update(
-                    {"fsUsedSize": convert_size(mongo_data["fsUsedSize"])}
-                )
-                mongo_data.update(
-                    {"fsTotalSize": convert_size(mongo_data["fsTotalSize"])}
-                )
+                mongo_data.update({"fsUsedSize": convert_size(mongo_data["fsUsedSize"])})
+                mongo_data.update({"fsTotalSize": convert_size(mongo_data["fsTotalSize"])})
                 coll_info = {}
-                for collections in client.get_database(
-                    dbs["name"]
-                ).list_collection_names():
-                    collection = client.get_database(dbs["name"]).command(
-                        "collStats", collections
-                    )
+                for collections in client.get_database(dbs["name"]).list_collection_names():
+                    collection = client.get_database(dbs["name"]).command("collStats", collections)
                     coll_info[collections] = {
                         "count": collection["count"],
                         "storageSize": convert_size(collection["storageSize"]),

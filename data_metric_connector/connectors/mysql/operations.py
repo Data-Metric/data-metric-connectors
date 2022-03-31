@@ -19,9 +19,7 @@ class MySql(object):
         """
         self.logger = logger
 
-    def get_meta(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> List[Dict[str, Dict[str, str]]]:
+    def get_meta(self, username: str, password: str, host: str, port: int, db: str) -> List[Dict[str, Dict[str, str]]]:
         """
         Gets the metadata of the Mysql db database.
 
@@ -32,9 +30,7 @@ class MySql(object):
         :param db: Mysql db database name
         :return: metadata of the database
         """
-        cxn = ConnectMySql(self.logger).connect_database(
-            username, password, host, port, db
-        )
+        cxn = ConnectMySql(self.logger).connect_database(username, password, host, port, db)
         cursor = cxn.cursor(buffered=True)
         try:
             with open(
@@ -46,10 +42,7 @@ class MySql(object):
                     query_count += 1
                     query_result = cursors.fetchall()
                     if query_count == 1:
-                        tables_size = {
-                            table_name: [convert_size(int(size))]
-                            for table_name, size in query_result
-                        }
+                        tables_size = {table_name: [convert_size(int(size))] for table_name, size in query_result}
                     elif query_count == 2:
                         tables_count = {
                             table_name: [column_count, int(row_count)]

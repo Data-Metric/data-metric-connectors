@@ -16,9 +16,7 @@ class ConnectMongo(object):
         """
         self.logger = logger
 
-    def test_connection(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> bool:
+    def test_connection(self, username: str, password: str, host: str, port: int, db: str) -> bool:
         """
         This function is used to test mongo db connection.
 
@@ -29,9 +27,7 @@ class ConnectMongo(object):
         :param db: mogo db database name
         :return: True if Authentication is successful , else False
         """
-        client = pymongo.MongoClient(
-            f"mongodb://{username}:{password}@{host}:{port}/{db}"
-        )
+        client = pymongo.MongoClient(f"mongodb://{username}:{password}@{host}:{port}/{db}")
         try:
             if client[db].list_collection_names() is not None:
                 self.logger.info("Authentication Successful! for mongo db")
@@ -44,9 +40,7 @@ class ConnectMongo(object):
             self.logger.info("Connection Getting Closed for mongo db")
             client.close()
 
-    def connect_database(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> connect:
+    def connect_database(self, username: str, password: str, host: str, port: int, db: str) -> connect:
         """
         Connects to mongo db and returns mongo client.
 
@@ -58,9 +52,7 @@ class ConnectMongo(object):
         :return: mongo client
         """
         try:
-            db = pymongo.MongoClient(
-                f"mongodb://{username}:{password}@{host}:{port}/{db}"
-            )
+            db = pymongo.MongoClient(f"mongodb://{username}:{password}@{host}:{port}/{db}")
             self.logger.info("Mongo Database connected!")
             return db
         except Exception as e:

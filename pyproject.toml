@@ -32,6 +32,13 @@ pre-commit = "^2.17.0"
 autopep8 = "1.5.0"
 types-requests = "^2.27.11"
 
+[tool.black]
+line-length = 120
+
+[tool.poetry.extras]
+lint = [ "pylint",]
+
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

@@ -15,9 +15,7 @@ class ConnectMySql(object):
         """
         self.logger = logger
 
-    def test_connection(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> bool:
+    def test_connection(self, username: str, password: str, host: str, port: int, db: str) -> bool:
         """
         This function is used to test MySql db connection.
 
@@ -29,9 +27,7 @@ class ConnectMySql(object):
         :return: True if Authentication is successful , else False
         """
         try:
-            cnx = connector.connect(
-                user=username, password=password, host=host, port=port, database=db
-            )
+            cnx = connector.connect(user=username, password=password, host=host, port=port, database=db)
             self.logger.info("Authentication Successful! for MySql db")
             cnx.close()
             return True
@@ -39,9 +35,7 @@ class ConnectMySql(object):
             self.logger.error(f"Authentication Failed for MySql db - {e}")
             return False
 
-    def connect_database(
-        self, username: str, password: str, host: str, port: int, db: str
-    ) -> connector.connect:
+    def connect_database(self, username: str, password: str, host: str, port: int, db: str) -> connector.connect:
         """
         Connects to Mysql db and returns Mysql connection.
 
@@ -53,9 +47,7 @@ class ConnectMySql(object):
         :return: Mysql connection
         """
         try:
-            cnx = connector.connect(
-                user=username, password=password, host=host, port=port, database=db
-            )
+            cnx = connector.connect(user=username, password=password, host=host, port=port, database=db)
             self.logger.info("MySql Database connected!")
             return cnx
         except Exception as e:
