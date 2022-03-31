@@ -1,6 +1,7 @@
 # data-metric-connectors
 
-[![build status](https://img.shields.io/github/workflow/status/Data-metric/data-metric-connectors/code-quality.yml?event=push)](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml?query=workflow%3Atest)
+[![build](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml/badge.svg)](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml)
+[![](https://img.shields.io/codecov/c/github/Data-metric/data-metric-conectors)](https://app.codecov.io/gh/Data-Metric/data-metric-connectors)
 
 
 
