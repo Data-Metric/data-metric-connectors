@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "data-metric-connectors"
+name = "data-metrics-connectors"
 version = "0.1.0"
 description = ""
 authors = ["AADARSH GAIKWAD <aadarshgaikwad96@gmail.com>"]
