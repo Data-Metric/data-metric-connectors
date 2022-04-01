@@ -76,3 +76,7 @@ jobs:
           path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
           
+      - name: Upload Coverage
+        run: |
+          bash <(curl -s https://codecov.io/bash) -X gcov -Z
+          
