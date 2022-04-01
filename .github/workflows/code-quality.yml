@@ -78,5 +78,7 @@ jobs:
           
       - name: Upload Coverage
         run: |
-          bash <(curl -s https://codecov.io/bash) -X gcov -Z
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${{ secrets.CODECOV_TOKEN }}
           
