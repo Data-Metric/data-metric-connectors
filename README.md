@@ -1,7 +1,12 @@
 # data-metric-connectors
 
-[![build](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml/badge.svg)](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml)
-[![](https://img.shields.io/codecov/c/github/Data-metric/data-metric-conectors)](https://app.codecov.io/gh/Data-Metric/data-metric-connectors)
+- [![build](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml/badge.svg)](https://github.com/Data-Metric/data-metric-connectors/actions/workflows/code-quality.yml)
+
+- [![](https://img.shields.io/codecov/c/github/Data-metric/data-metric-conectors)](https://app.codecov.io/gh/Data-Metric/data-metric-connectors)
+
+
+- ![](https://img.shields.io/github/license/Data-Metric/data-metric-connectors)
+
 
 
 
