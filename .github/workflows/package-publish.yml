@@ -44,4 +44,4 @@ jobs:
       # Publish package to Pypi
       - name: Publish Package
         run: |
-          poetry publish --build --username aadarshgaikwad96 --password ${{ secrets.PYPI_TOKEN }}
+          poetry publish --build --username __token__ --password ${{ secrets.PYPI_TOKEN }}
